@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol TextSizable: class {
+protocol TextSizableDelegate {
     func changeFontSize(_ size: Double)
 }

@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class FirstVC: UIViewController, TextSizable {
+class FirstVC: UIViewController, TextSizableDelegate {
     
     //MARK: -- Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -20,15 +20,14 @@ class FirstVC: UIViewController, TextSizable {
         let allCells = tableView.visibleCells //This makes an array of all visible cells
         for cell in allCells {
             cell.textLabel?.font = UIFont.systemFont(ofSize: CGFloat(size))
+            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: CGFloat(size) - 3)
         }
     }
     
     //MARK: -- Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let destination = segue.destination as? SecondVC else {fatalError()}
-        if let nav = segue.destination as? UINavigationController, let secondVC = nav.topViewController as? SecondVC {
-            secondVC.delegate = self
-        }
+        guard let destination = segue.destination as? SecondVC else {fatalError()}
+        destination.delegate = self
     }
     
     //MARK: -- ViewDidLoad
