@@ -14,19 +14,21 @@ class SecondVC: UIViewController {
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
     var delegate: TextSizableDelegate?
+   
+    
     
     //MARK: -- Actions
     @IBAction func stepperPressed(_ sender: UIStepper) {
         bottomLabel.text = sender.value.description
         bottomLabel.font = UIFont.systemFont(ofSize: CGFloat(sender.value))
         slider.value = Float(sender.value)
-        delegate?.changeFontSize(sender.value)
+        delegate?.changeFontSize(CGFloat(sender.value))
     }
     @IBAction func sliderMoved(_ sender: UISlider) {
         bottomLabel.text = sender.value.description
         bottomLabel.font = UIFont.systemFont(ofSize: CGFloat(sender.value))
         stepper.value = Double(CGFloat(sender.value))
-        delegate?.changeFontSize(Double(sender.value))
+        delegate?.changeFontSize(CGFloat(Double(sender.value)))
     }
     
     //MARK: -- ViewDidLoad

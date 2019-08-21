@@ -8,6 +8,7 @@
 import UIKit
 
 class FirstVC: UIViewController, TextSizableDelegate {
+ 
     
     //MARK: -- Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -16,11 +17,13 @@ class FirstVC: UIViewController, TextSizableDelegate {
     let allMovies = Movie.allMovies
     
     //MARK: -- Custom Delegate Method
-    func changeFontSize(_ size: Double) {
+    func changeFontSize(_ size: CGFloat) {
         let allCells = tableView.visibleCells //This makes an array of all visible cells
         for cell in allCells {
-            cell.textLabel?.font = UIFont.systemFont(ofSize: CGFloat(size))
-            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: CGFloat(size) - 3)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: size)
+            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: size - 3)
+            cell.textLabel?.sizeToFit()
+            cell.detailTextLabel?.sizeToFit()
         }
     }
     
@@ -35,8 +38,11 @@ class FirstVC: UIViewController, TextSizableDelegate {
         super.viewDidLoad()
         tableView.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 }
-
 
 //MARK: -- Table Datasource Methods
 extension FirstVC: UITableViewDataSource {
@@ -51,3 +57,6 @@ extension FirstVC: UITableViewDataSource {
         return cell
     }
 }
+
+
+

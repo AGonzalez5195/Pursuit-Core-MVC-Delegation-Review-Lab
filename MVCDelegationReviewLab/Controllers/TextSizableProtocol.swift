@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol TextSizableDelegate {
-    func changeFontSize(_ size: Double)
+    func changeFontSize(_ size: CGFloat)
 }
